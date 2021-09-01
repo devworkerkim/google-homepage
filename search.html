@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Search (Clone)</title>
+    <style>
+        /* CSS Reset */
+        body, body * {
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background-color: white;
+            padding: 1em 1em 0 1em;
+            position: sticky;
+            top: 0px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        #header__left {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .logo {
+            height: 40px;
+            padding-right: 1em;
+        }
+
+        #header__searchBox {
+            width: 690px;
+            display: inline-block;
+        }
+        
+        .header__searchBar {
+            padding: .5em;
+            border: 1px solid black;
+            border-radius: 40px;
+            margin-bottom: 1em;
+            display: flex;
+            flex-direction: row;
+        }
+
+        input[type="search"] {
+            flex-grow: 1;
+            padding: 0 .5em;
+            border: none;
+        }
+
+        input[type="search"]:focus-visible {
+            outline: none;
+        }
+        
+        .searchBox__filters {
+            padding-bottom: 1em;
+            padding-left: 150px;
+            border-bottom: 1px solid black;
+        }
+        .searchBox__filters a {
+            color: black;
+            text-decoration: none;
+            padding-bottom: calc(1em - 5px);
+            margin-right: 1em;
+        }
+
+        .searchBox__filter--active {
+            border-bottom: 5px solid black;
+        }
+        #searchBox__filters--toolsLink {
+            margin-left: 120px;
+        }
+
+        #header__right {
+            display: flex;
+            align-items: start;
+        }
+
+        #header__right * {
+            margin: .5em;
+        }
+
+        #header__right img {
+            padding-top: .5em;
+        }
+        
+        #signInButton {
+            color: white;
+            background-color: #4683ea;
+            padding: 1em;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        main {
+            width: 690px;
+            padding-top: 1em;
+            padding-left: 150px;
+        }
+
+        .result {
+            margin: 1em 0;
+        }
+
+        .result a {
+            text-decoration: none;
+        }
+
+        .result a:hover h2 {
+            text-decoration: underline;
+        }
+
+        .suggestedSearches {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .suggestedSearch {
+            color: black;
+            text-decoration: none;
+            background-color: lightgray;
+            width: 40%;
+            padding: 1em;
+            border: none;
+            border-radius: 40px;
+            margin-right: 1em;
+            margin-bottom: .5em;
+            display: flex;
+            flex-direction: row;
+        }
+        .suggestedSearch:hover {
+            text-decoration: underline;
+        }
+        
+        .suggestedSearch img {
+            padding-right: 1em;
+        }
+        
+        .page_Nav {
+            font-family: sans-serif;
+            margin: 1em;
+            display: flex;
+            justify-content: center;
+        }
+        .page_Nav a {
+            text-decoration: none;
+        }
+        .page_Nav a:hover .lower {
+            text-decoration: underline;
+        }
+        td {
+            text-align: center;
+        }
+        .upper {
+            font-weight: bolder;
+            font-size: 2em;
+        }
+
+        footer {
+            background-color: lightgray;
+            padding: 1em 0px 1em 150px;
+        }
+        footer a {
+            color: darkslategray;
+            text-decoration: none;
+            padding-right: 1.5em;
+        }
+        footer a:hover {
+            color: black;
+        }
+
+        .footer__location {
+            margin: 1em 0;
+        }
+        .footer__locationLink {
+            padding-right: 0;
+        }
+        </style>
+</head>
+<body>
+    <header>
+        <div id="header__left">
+            <img class="logo" src="/public/images/googlelogo_color_272x92dp.png">
+            <div id="header__searchBox">
+                <form class="header__searchBar">
+                    <input type="search">
+                    <img src="/public/images/outline_mic_black_24dp.png">
+                    <input type="image" src="/public/images/outline_search_black_24dp.png" alt="Google Search">
+                </form>
+            </div>
+        </div>
+        <div id="header__right">
+            <img src="/public/images/outline_settings_black_24dp.png">
+            <img src="/public/images/outline_apps_black_24dp.png">
+            <button id="signInButton"><strong>Sign In</strong></button>
+        </div>
+    </header>
+    <div class="searchBox__filters">
+        <a href="#" class="searchBox__filter--active"><span><img src="/public/images/outline_search_black_24dp.png"></span>All</a>
+        <a href="#"><span><img src="/public/images/outline_article_black_24dp.png"></span>News</a>
+        <a href="#"><span><img src="/public/images/outline_slideshow_black_24dp.png"></span>Videos</a>
+        <a href="#"><span><img src="/public/images/outline_location_on_black_24dp.png"></span>Maps</a>
+        <a href="#"><span><img src="/public/images/outline_sell_black_24dp.png"></spantion>Shopping</a>
+        <a href="#"><span><img src="/public/images/outline_more_vert_black_24dp.png"></span>More</a>
+        <a href="#" id="searchBox__filters--toolsLink">Tools</a>
+    </div>
+    <main>
+        <p class="searchStats">About 12 results (0.07 seconds)</p>
+        <div class="result">
+            <a href="/index.html">
+                <cite>http://localhost:5500/index.html<img src="/public/images/outline_more_vert_black_24dp.png"></cite>
+                <h2>
+                    Google (Page Clone)
+                </h2>
+            </a>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis veritatis odit nesciunt culpa, illo dolorem suscipit nostrum numquam! Quis sit dolores si...</p>
+        </div>
+        <div class="result">
+            <a href="/index.html">
+                <cite>http://localhost:5500/index.html<img src="/public/images/outline_more_vert_black_24dp.png"></cite>
+                <h2>
+                    Google (Page Clone)
+                </h2>
+            </a>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis veritatis odit nesciunt culpa, illo dolorem suscipit nostrum numquam! Quis sit dolores si...</p>
+        </div>
+        <div class="result">
+            <a href="/index.html">
+                <cite>http://localhost:5500/index.html<img src="/public/images/outline_more_vert_black_24dp.png"></cite>
+                <h2>
+                    Google (Page Clone)
+                </h2>
+            </a>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis veritatis odit nesciunt culpa, illo dolorem suscipit nostrum numquam! Quis sit dolores si...</p>
+        </div>
+        <div class="result">
+            <a href="/index.html">
+                <cite>http://localhost:5500/index.html<img src="/public/images/outline_more_vert_black_24dp.png"></cite>
+                <h2>
+                    Google (Page Clone)
+                </h2>
+            </a>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis veritatis odit nesciunt culpa, illo dolorem suscipit nostrum numquam! Quis sit dolores si...</p>
+        </div>
+        <div class="result">
+            <a href="/index.html">
+                <cite>http://localhost:5500/index.html<img src="/public/images/outline_more_vert_black_24dp.png"></cite>
+                <h2>
+                    Google (Page Clone)
+                </h2>
+            </a>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis veritatis odit nesciunt culpa, illo dolorem suscipit nostrum numquam! Quis sit dolores si...</p>
+        </div>
+        <div class="result">
+            <a href="/index.html">
+                <cite>http://localhost:5500/index.html<img src="/public/images/outline_more_vert_black_24dp.png"></cite>
+                <h2>
+                    Google (Page Clone)
+                </h2>
+            </a>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis veritatis odit nesciunt culpa, illo dolorem suscipit nostrum numquam! Quis sit dolores si...</p>
+        </div>
+        <div class="result">
+            <a href="/index.html">
+                <cite>http://localhost:5500/index.html<img src="/public/images/outline_more_vert_black_24dp.png"></cite>
+                <h2>
+                    Google (Page Clone)
+                </h2>
+            </a>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis veritatis odit nesciunt culpa, illo dolorem suscipit nostrum numquam! Quis sit dolores si...</p>
+        </div>
+        <div class="result">
+            <a href="/index.html">
+                <cite>http://localhost:5500/index.html<img src="/public/images/outline_more_vert_black_24dp.png"></cite>
+                <h2>
+                    Google (Page Clone)
+                </h2>
+            </a>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis veritatis odit nesciunt culpa, illo dolorem suscipit nostrum numquam! Quis sit dolores si...</p>
+        </div>
+        <div class="result">
+            <a href="/index.html">
+                <cite>http://localhost:5500/index.html<img src="/public/images/outline_more_vert_black_24dp.png"></cite>
+                <h2>
+                    Google (Page Clone)
+                </h2>
+            </a>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis veritatis odit nesciunt culpa, illo dolorem suscipit nostrum numquam! Quis sit dolores si...</p>
+        </div>
+        <div class="result">
+            <a href="/index.html">
+                <cite>http://localhost:5500/index.html<img src="/public/images/outline_more_vert_black_24dp.png"></cite>
+                <h2>
+                    Google (Page Clone)
+                </h2>
+            </a>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis veritatis odit nesciunt culpa, illo dolorem suscipit nostrum numquam! Quis sit dolores si...</p>
+        </div>
+        <div class="suggestedSearches">
+            <a href="#" class="suggestedSearch">
+                <img src="public/images/outline_search_black_24dp.png">Search Suggestion 1
+            </a>
+            <a href="#" class="suggestedSearch">
+                <img src="public/images/outline_search_black_24dp.png">Search Suggestion 2
+            </a>
+            <a href="#" class="suggestedSearch">
+                <img src="public/images/outline_search_black_24dp.png">Search Suggestion 3
+            </a>
+            <a href="#" class="suggestedSearch">
+                <img src="public/images/outline_search_black_24dp.png">Search Suggestion 4
+            </a>
+            <a href="#" class="suggestedSearch">
+                <img src="public/images/outline_search_black_24dp.png">Search Suggestion 5
+            </a>
+        </div>
+        <table class="page_Nav">
+            <tbody>
+                <tr>
+                    <td><p class="upper" style="color: blue;">G</p><p class="lower">&nbsp</p></td>
+                    <td><p class="upper" style="color: red;">o</p><p class="lower">1</p></td>
+                    <td><a href="#"><p class="upper" style="color: goldenrod;">o</p><p class="lower">2</p></a></td>
+                    <td><p class="upper" style="color: blue;">g</p><p>&nbsp</p></td>
+                    <td><p class="upper" style="color: green;">l</p><p>&nbsp</p></td>
+                    <td><p class="upper" style="color: red;">e</p><p>&nbsp</p></td>
+                    <td><a href="#"><p style="color: green; padding-bottom: 1em; font-weight: bold;">></p><p class="lower">Next</p></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <p class="footer__location"><strong>12345, Schenectady County, New York</strong> - <a href="#" class="footer__locationLink">From your IP address</a> - <a href="#" class="footer__locationLink">Update location</a></p>
+        <a href="#">Help</a>
+        <a href="#">Send Feedback</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+    </footer>
+</body>
+</html>
